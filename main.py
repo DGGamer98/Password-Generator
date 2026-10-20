@@ -1,27 +1,18 @@
-import tkinter as tk
-from tkinter import ttk
 import random
 
-#Eccezzioni per la gestione di errori
-class format_invalid(Exception):
-    pass
-class password_small(Exception):
+class small_password():
     pass
 
-#Classe per definire la logica di business
-class password_generator():
+def passwordGenerator(bit):
+    character = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!£$%&/()=?^É*§°Ç;:_-.,ÙÀÒ+ÈÌ"
+    password = ""
 
-    character = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789&$!&/(=É*§°§°_ÇÉ*)"
+    for x in range(bit):
+        if bit < 5:
+            raise small_password("La password è troppo piccola")
+        car = random.choice(character)
+        password+=car
+    return password
 
-    def __init__(self, sequenz):
-        self.__sequenz = sequenz
-
-    @property
-    def sequenz(self):
-        return self.__sequenz
-
-    @sequenz.setter
-    def sequenz(self, newSequenz):
-        self.sequenz = newSequenz
-        
+print(passwordGenerator(10))
 
